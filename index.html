@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>sql-parser</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+        />
+    </head>
+    <body>
+        <textarea id="sql-editor">SELECT * FROM table WHERE id = :id</textarea>
+        <div></div>
+        <script type="module">
+            import { Lexer } from "./dist/sql-parser.js";
+            const sqlEditor = document.querySelector("#sql-editor");
+            const div = document.querySelector("div");
+
+            function lex() {
+                const tokens = Lexer.lex(sqlEditor.value);
+                div.innerHTML = tokens.reduce((acc, token) => {
+                    return acc + `<pre>${JSON.stringify(token)}</pre>`;
+                }, "");
+            }
+
+            sqlEditor.addEventListener("input", lex);
+
+            lex();
+        </script>
+    </body>
+</html>

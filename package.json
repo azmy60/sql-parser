@@ -1,0 +1,41 @@
+{
+  "name": "sql-parser",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/sql-parser.umd.cjs",
+  "module": "./dist/sql-parser.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/sql-parser.js",
+      "require": "./dist/sql-parser.umd.cjs"
+    }
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.5.0",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "scripts": {
+    "test": "mocha './src/**/*.spec.ts'",
+    "test:watch": "mocha './src/**/*.spec.ts' --watch",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "assert": "^2.0.0",
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.5.2"
+  },
+  "mocha": {
+    "require": [
+      "ts-node/register"
+    ],
+    "extension": [
+      "ts"
+    ]
+  }
+}
